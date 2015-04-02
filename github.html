@@ -25,7 +25,11 @@
 
             $scope.search = function(event) {
                 if (event.keyCode === 13) {
-                    $http.get('https://api.github.com/search/repositories?q=' + $scope.term).success(function (data) {
+                    $http({
+                        url: 'https://api.github.com/search/repositories?q=' + $scope.term,
+                        method: 'GET',
+                        cache: true
+                    }).success(function (data) {
                         $scope.data = data;
                     });
                 }
